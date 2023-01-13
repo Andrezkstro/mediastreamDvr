@@ -23,7 +23,8 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/mediastreamDvr/index.html">Iframe <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/mediastreamDvr/index.html">Iframe <span
+                            class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/mediastreamDvr/playerApi.html">Player API</a>
@@ -31,68 +32,74 @@
             </ul>
         </div>
     </nav>
-    <h1>Player Mediastream Player API</h1>
-    <!-- Load the JavaScript library -->
-    <script src="https://platform-static.cdn.mdstrm.com/js/player_api.js"></script>
+    <div class="container">
+        <h1>Player Mediastream Player API</h1>
+        <!-- Load the JavaScript library -->
+        <script src="https://platform-static.cdn.mdstrm.com/js/player_api.js"></script>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <!-- Create the element that will contain the iframe. You will use the #ID later -->
+                <div id="mdstrm-player"></div>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+        <!-- Create a new player using the JavaScript API -->
+        <script>
 
-    <!-- Create the element that will contain the iframe. You will use the #ID later -->
-    <div id="mdstrm-player"></div>
-
-    <!-- Create a new player using the JavaScript API -->
-    <script>
-
-        // Options:
-        var playerOptions = {
-            width: 640, // Width in pixels
-            height: 360, // Height in pixels
-            type: "dvr", // Video type. Possible values: "media", "live"
-            id: "6089d0a7f61e11081f8c832a", 
-            player: "62b0afd70b94bf053272fa24",// Player ID
-            autoplay: false, // Enable autoplay. Possible values: true, false
-            events: { // Callbacks to be triggered when certain actions are executed by the player. All optional.
-                onPlayerReady: function () { // Optional callback to be triggered as soon as the player has finished loading
-                    console.log("Player is ready");
-                },
-                onPlay: function () { // Optional callback to be triggered as soon as the player starts playing
-                    console.log("Playing...");
-                },
-                onVideoEnd: function () { // Optional callback to be triggered when the video ends playing
-                    console.log("Video just ended");
-                },
-                onVideoStop: function () { // Optional callback to be triggered when the user stops or pauses the video
-                    console.log("User stopped or paused the video");
-                },
-                onVideoError: function () { // Optional callback to be triggered when there's a playback error
-                    console.log("There was an error while loading the video");
-                },
-                onVolumeChange: function (volume) { // Optional callback to be triggered when volume is changed (0-100)
-                    console.log("Volume was changed to " + volume);
-                },
-                onTimeUpdate: function (time) { // Optional callback to be triggered when time is updated
-                    console.log("Current time is " + time);
-                },
-                onFullscreenChange: function (fullscreen) { // Optional callback to be triggered when fullscreen status change
-                    console.log("Is fullscreen " + fullscreen);
+            // Options:
+            var playerOptions = {
+                width: 640, // Width in pixels
+                height: 360, // Height in pixels
+                type: "dvr", // Video type. Possible values: "media", "live"
+                id: "6089d0a7f61e11081f8c832a",
+                player: "62b0afd70b94bf053272fa24",// Player ID
+                autoplay: false, // Enable autoplay. Possible values: true, false
+                events: { // Callbacks to be triggered when certain actions are executed by the player. All optional.
+                    onPlayerReady: function () { // Optional callback to be triggered as soon as the player has finished loading
+                        console.log("Player is ready");
+                    },
+                    onPlay: function () { // Optional callback to be triggered as soon as the player starts playing
+                        console.log("Playing...");
+                    },
+                    onVideoEnd: function () { // Optional callback to be triggered when the video ends playing
+                        console.log("Video just ended");
+                    },
+                    onVideoStop: function () { // Optional callback to be triggered when the user stops or pauses the video
+                        console.log("User stopped or paused the video");
+                    },
+                    onVideoError: function () { // Optional callback to be triggered when there's a playback error
+                        console.log("There was an error while loading the video");
+                    },
+                    onVolumeChange: function (volume) { // Optional callback to be triggered when volume is changed (0-100)
+                        console.log("Volume was changed to " + volume);
+                    },
+                    onTimeUpdate: function (time) { // Optional callback to be triggered when time is updated
+                        console.log("Current time is " + time);
+                    },
+                    onFullscreenChange: function (fullscreen) { // Optional callback to be triggered when fullscreen status change
+                        console.log("Is fullscreen " + fullscreen);
+                    }
                 }
-            }
-        };
+            };
 
-        // The class MediastreamPlayer is used to create a new player instance
-        // First argument is the #ID of the containing element. Second argument is an Object of options
-        var player = new MediastreamPlayer("mdstrm-player", playerOptions);
+            // The class MediastreamPlayer is used to create a new player instance
+            // First argument is the #ID of the containing element. Second argument is an Object of options
+            var player = new MediastreamPlayer("mdstrm-player", playerOptions);
 
-        // Player can be controlled using the API's methods
-        player.videoPlay();
-    </script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
-        integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
-        integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
-        crossorigin="anonymous"></script>
+            // Player can be controlled using the API's methods
+            player.videoPlay();
+        </script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+            integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+            crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+            integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+            crossorigin="anonymous"></script>
 </body>
 
 </html>
